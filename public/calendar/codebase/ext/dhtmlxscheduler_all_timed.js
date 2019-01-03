@@ -1,0 +1,14 @@
+/*
+@license
+dhtmlxScheduler v.5.1.0 Stardard
+
+This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
+
+(c) Dinamenta, UAB.
+*/
+!function(){scheduler.config.all_timed="short",scheduler.config.all_timed_month=!1;var e=function(e){return!((e.end_date-e.start_date)/36e5>=24)};scheduler._safe_copy=function(e){var t=null,a=scheduler._copy_event(e);return e.event_pid&&(t=scheduler.getEvent(e.event_pid)),t&&t.isPrototypeOf(e)&&(delete a.event_length,delete a.event_pid,delete a.rec_pattern,delete a.rec_type),a};var t=scheduler._pre_render_events_line,a=scheduler._pre_render_events_table,r=function(e,r){return this._table_view?a.call(this,e,r):t.call(this,e,r);
+};scheduler._pre_render_events_line=scheduler._pre_render_events_table=function(t,a){function i(e){var t=n(e.start_date);return+e.end_date>+t}function n(e){var t=scheduler.date.add(e,1,"day");return t=scheduler.date.date_part(t)}function s(e,t){var a=scheduler.date.date_part(new Date(e));return a.setHours(t),a}if(!this.config.all_timed||this._table_view&&"month"!=this._mode||"month"==this._mode&&!this.config.all_timed_month)return r.call(this,t,a);for(var o=0;o<t.length;o++){var d=t[o];if(!d._timed)if("short"!=this.config.all_timed||e(d)){
+var l=this._safe_copy(d);l.start_date=new Date(l.start_date),i(d)?(l.end_date=n(l.start_date),24!=this.config.last_hour&&(l.end_date=s(l.start_date,this.config.last_hour))):l.end_date=new Date(d.end_date);var _=!1;l.start_date<this._max_date&&l.end_date>this._min_date&&l.start_date<l.end_date&&(t[o]=l,_=!0);var c=this._safe_copy(d);if(c.end_date=new Date(c.end_date),c.start_date<this._min_date?c.start_date=s(this._min_date,this.config.first_hour):c.start_date=s(n(d.start_date),this.config.first_hour),
+c.start_date<this._max_date&&c.start_date<c.end_date){if(!_){t[o--]=c;continue}t.splice(o+1,0,c)}}else"month"!=this._mode&&t.splice(o--,1)}var h="move"==this._drag_mode?!1:a;return r.call(this,t,h)};var i=scheduler.get_visible_events;scheduler.get_visible_events=function(e){return this.config.all_timed&&this.config.multi_day?i.call(this,!1):i.call(this,e)},scheduler.attachEvent("onBeforeViewChange",function(e,t,a,r){return scheduler._allow_dnd="day"==a||"week"==a,!0}),scheduler._is_main_area_event=function(t){
+return!!(t._timed||this.config.all_timed===!0||"short"==this.config.all_timed&&e(t))};var n=scheduler.updateEvent;scheduler.updateEvent=function(e){var t,a,r=scheduler.getEvent(e);r&&(t=scheduler.config.all_timed&&!(scheduler.isOneDayEvent(scheduler._events[e])||scheduler.getState().drag_id),t&&(a=scheduler.config.update_render,scheduler.config.update_render=!0)),n.apply(scheduler,arguments),r&&t&&(scheduler.config.update_render=a)}}();
+//# sourceMappingURL=../sources/ext/dhtmlxscheduler_all_timed.js.map

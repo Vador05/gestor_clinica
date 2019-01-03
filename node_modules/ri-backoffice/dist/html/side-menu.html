@@ -1,0 +1,51 @@
+<div class="page-sidebar navbar-collapse collapse" collapse="isMenuCollapsed">
+    <accordion class="page-sidebar-menu" close-others="true">
+        <accordion-group ng-repeat="(key, obj) in sections.get()" is-disabled="isDisabled"
+                         ng-class="key == actualSection ? 'active' : ''" is-open="isOpen">
+            <accordion-heading>
+                <i class="glyphicon glyphicon-chevron-right"></i>
+                {{key}}<!--<i class="pull-right glyphicon glyphicon-chevron-right"></i>-->
+                <span class="selected"></span>
+                <span class="arrow"></span>
+            </accordion-heading>
+            <ul class="nav nav-pills nav-stacked" ng-if="obj">
+                <li ng-repeat="(key, obj) in obj" ng-class="key == actualSchema ? 'active' : ''">
+                    <a href="" ng-if="!isInstanceOf(obj)" href="" ng-click="click(key, key, obj)">
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                        {{common.prettifyTitle(key)}}
+                    </a>
+                    <accordion ng-if="isInstanceOf(obj)" class="page-sidebar-menu" close-others="true">
+                        <div ng-include="'sideMenuTree'">
+
+                        </div>
+                    </accordion>
+                </li>
+            </ul>
+
+        </accordion-group>
+    </accordion>
+</div>
+
+<script type="text/ng-template" id="sideMenuTree">
+    <accordion-group>
+        <accordion-heading ng-click="openSection(key)">
+            <i class="glyphicon glyphicon-chevron-right"></i>
+            {{key}}<!--<i class="pull-right glyphicon glyphicon-chevron-right"></i>-->
+            <span class="selected"></span>
+            <span class="arrow"></span>
+        </accordion-heading>
+        <ul class="nav nav-pills nav-stacked" ng-if="obj">
+            <li ng-repeat="(key, obj) in obj" ng-class="key == actualSchema ? 'active' : ''">
+                <a href="" ng-if="!isInstanceOf(obj)" href="" ng-click="click(key, key, obj)">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                    {{common.prettifyTitle(key)}}
+                </a>
+                <accordion ng-if="isInstanceOf(obj)" class="page-sidebar-menu" close-others="true">
+                    <div ng-include="'sideMenuTree'">
+
+                    </div>
+                </accordion>
+            </li>
+        </ul>
+    </accordion-group>
+</script>

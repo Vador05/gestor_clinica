@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+var path = require('path');
+var routeInjector = require('route-injector');
+
+/*
+routeInjector.loadPlugin(path.join(__dirname, '..', '..', '..', 'plugins_dev', 'riprofiler'));
+routeInjector.loadPlugin(path.join(__dirname, '..', '..', '..', 'plugins_dev', 'rihistory'), {
+    getUser: function (req) {
+        return "usuario@dominio.com"
+    }
+});
+*/
+
+routeInjector.start(function () {
+    console.log("Hola", routeInjector.version);
+});

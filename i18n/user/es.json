@@ -1,0 +1,10 @@
+{
+  "USER": {
+    "NICENAME": "NiceName",
+    "USERNAME": "Nombre de Usuario",
+    "NAME": "Nombre",
+    "PASSWORD": "Contraseña",
+    "ROLE": "Rol",
+    "ADD2": "Suma2"
+  }
+}

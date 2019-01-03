@@ -1,0 +1,9 @@
+This folder should contain translations for the backoffice.
+
+|-i18n
+  |-myawesometranslation
+     |-en.json
+     |-es.json
+  |-myothertranslation
+     |-en.json
+     |-es.json

@@ -1,0 +1,24 @@
+<div>
+    <div ng-include src="'html/inc/breadcrumb.html'"></div>
+    <h1 class="page-title">{{'MODELS.TITLE'|translate}}
+        <small>{{'MODELS.SUBTITLE'|translate}}</small>
+    </h1>
+    <flash-message></flash-message>
+    <div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th colspan="3">{{'MODELS.TABLE.HMODEL'|translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="schema in schemas | toArray | orderBy : '$key'">
+                <td>
+                    <a ng-href="{{schemaHREF(schema.$key, schema)}}">{{pretty(schema.$key)}}</a>
+                </td>
+                <td><a ng-if="!schemaConf.isSingle" class="btn btn-primary btn-sm" href="#/model/{{schema.$key}}/new">{{'MODELS.TABLE.CREATE'|translate}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
