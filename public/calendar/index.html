@@ -1,89 +1,172 @@
 <!doctype html>
 <head>
-    <meta content="text/html; charset=utf-8">
-    <script src="codebase/dhtmlxscheduler.js" ></script>
-    <link rel="stylesheet" href="codebase/dhtmlxscheduler.css">
-    <style type="text/css" media="screen">
-        html, body{
-            margin:0px;
-            padding:0px;
-            height:100%;
-            overflow:hidden;
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Gestor de Clinica</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="codebase/dhtmlxscheduler.js?v=20181212" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="codebase/dhtmlxscheduler_material.css?v=20181212" type="text/css"  title="no title"
+          charset="utf-8">
+    <script src="codebase/ext/dhtmlxscheduler_editors.js?v=20181212" type="text/javascript" charset="utf-8"></script>
+
+    <script src="//cdn.dhtmlx.com/edge/dhtmlx.js?v=20181212" type="text/javascript"></script>
+    <link rel="stylesheet" href="//cdn.dhtmlx.com/edge/dhtmlx.css?v=20181212" type="text/css">
+
+    <style type="text/css" >
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            overflow: hidden;
         }
     </style>
-    <div class="row">
-        <div class="column">
-            <select>
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
-            </select>
 
-        </div>
-        <div class="column"></div>
-        <div class="column"></div>
+    <script type="text/javascript" charset="utf-8">
+        scheduler.locale.labels.export_tab = "Export"
+        var pacientes;
+        if (!window.dhtmlXCombo)
+            alert("Faltan archivos en la configuracion, por favor contacte con su proveedor.");
+        scheduler.attachEvent("onBeforeLightbox", function (id){
+            console.log("On Before Lightbox") ;
+            console.log(pacientes);
+            return true;
+        });
+        scheduler.attachEvent("onLightbox", function (id){
+            console.log("On  Lightbox") ;
+            console.log(pacientes);
 
-    </div>
-</head>
+        });
+        function init() {
+            console.log("onInit");
+
+            $.ajax({
+                type: 'GET',
+                url: '/pacientes',
+                success:function (recvpacientes){
+                    console.log(recvpacientes);
+                    pacientes = []
+                    $.each(recvpacientes.result, function(i,paciente){
+                        pacientes.push( { key:paciente._id, label: String(paciente.nombre+" "+paciente.apellido) ,testo:String(paciente.nombre+" "+paciente.apellido)});//TODO text value String(paciente.nombre+" "+paciente.apellido)
+                        console.log(pacientes);
+                    })
+                    $.ajax({
+                        type: 'GET',
+                        url: '/tipovisitas',
+                        success:function (recvvisitas){
+                            var visitas= []
+                            $.each(recvvisitas.result, function(i,visita){
+                                visitas.push( { key:visita._id, label: visita.nombre });
+                            })
+                            var doctor = [{key: "giro",label:"Dr.Girones"}]
+
+                            /* //TODO on the superintegration where authorization could be checked.
+                            $.ajax({
+                                type: 'GET',
+                                url: '/users',
+                                success:function (recvusers){
+                                    console.log(recvusers);
+                                    var doctor = []
+                                    $.each(recvusers.result, function(i,user){
+                                        doctor.push( { key:user._id, label: user.niceName});
+                                    })*/
+                                    scheduler.config.lightbox.sections = [
+                                        { name: "Paciente", options: pacientes, map_to: "paciente", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true , focus: true },
+                                        //{ name: "nombre paciente", height: 100, map_to: "text", type: "text"},
+                                        { name: "Notas de la visita", height: 100, map_to: "notas", type: "textarea"},
+                                        { name: "Doctor", options: doctor, map_to: "doctor", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
+                                        { name: "Tipo de visita", options: visitas, map_to: "tipo_visita", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
+                                        { name: "Hora de la visita", height: 72, type: "time", map_to: "auto"}
+                                    ];
+                                /*}
+                            })*/
+                        }
+                    })
+
+                }
+            })
+            scheduler.config.first_hour = 9;
+            scheduler.config.last_hour = 21;
+            scheduler.config.event_duration=20;
+            scheduler.config.time_step = 20;
+            scheduler.config.start_on_monday = true;
+            scheduler.config.hour_size_px = 120;
+            scheduler.config.multi_day = true;
+
+            scheduler.config.auto_end_date = true;
+            scheduler.config.details_on_create = true;
+            scheduler.config.details_on_dblclick = true;
+
+            scheduler.locale.labels.section_snack = "Choose your snack:";
 
 
-<script type="text/javascript" charset="utf-8">
-    function init() {
+            scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+            scheduler.init('scheduler_here', new Date(), "week");
+            scheduler.load("/data", "json", function(){
+                //if(scheduler.getState().min_date== "day"){
+                    // custom logic here
+                    //?min_date="+ scheduler.getState().min_date +"&max_date ="+ scheduler.getState().max_date
+                //show lightbox
+                //    scheduler.showLightbox("1261150549")
+            });
+            dhtmlx.message({
+                text:"Bienvenido al calendario !",
+                expire:1000*30
+            });
+            var dp = new dataProcessor("/data");
+            dp.init(scheduler);
+            dp.setTransactionMode("POST", false);
 
-        scheduler.config.first_hour = 9;
-        scheduler.config.last_hour = 21;
-        scheduler.config.event_duration=20;
-        scheduler.config.time_step = 20;
-        scheduler.config.start_on_monday = true;
-        scheduler.form_blocks["my_editor"]={
-            render:function(sns){
-                return "<div class='dhx_cal_ltext' style='height:150px;'>Patient :&nbsp;<input type='text'><br/> Visit notes&nbsp;<input type='text'  style=' height:90px; width:90%'><br/> Area of visit&nbsp; " +
-                    "<select>\n" +
-                    "  <option value=\"volvo\">Volvo</option>\n" +
-                    "  <option value=\"saab\">Saab</option>\n" +
-                    "  <option value=\"mercedes\">Mercedes</option>\n" +
-                    "  <option value=\"audi\">Audi</option>\n" +
-                    "</select><br/> " +
-                    " Tests brought for the visit: <input type=\"file\" name=\"myFile\"><br><br>\n" +
-                    "</div>";
-            },
-            set_value:function(node,value,ev){
-                console.log(node.childNodes);
-                node.childNodes[1].value=value||"";
-                node.childNodes[4].value=ev.comments||"";
-                node.childNodes[7].value = ev.speciality;
-                node.childNodes[10] = ev.file;
-            },
-            get_value:function(node,ev){
-                ev.file= node.childNodes[10].value;
-                ev.speciality = node.childNodes[7].value;
-                ev.comments= node.childNodes[4].value;
-                return node.childNodes[1].value;
-            },
-            focus:function(node){
-                var a=node.childNodes[1]; a.select(); a.focus();
-            }
+
         }
-        scheduler.config.lightbox.sections=[
-            { name:"description", height:200, map_to:"text", type:"my_editor" , focus:true},
-            { name:"time", height:72, type:"time", map_to:"auto"}
-        ]
-        scheduler.init('scheduler_here',(Date.now()));
 
-    }
+        scheduler.date.workweek_start = function (){
+            dhtmlx.message({
+                text:"Preparando sus datos!",
+                expire:1000*30
+            });
+            $.ajax({
+                type: 'POST',
+                url: '/dataexport',
+                data: {"max_date":scheduler.getState().max_date , "min_date" :scheduler.getState().min_date },
+                contentType: "application/json",
+                dataType: "json",
+                success:function (recvvisitas){
+                    var visitas= []
+                    $.each(recvvisitas.result, function(i,visita){
+                        visitas.push( { key:visita._id, label: visita.tipo });
+                    })
+                    var doctor = [{key: "giro",label:"Dr.Girones"}]
 
-   //scheduler.init('scheduler_here',new Date(2018,8,4),"month");
+                    /* //TODO on the superintegration where authorization could be checked.
+                    $.ajax({
+                        type: 'GET',
+                        url: '/users',
+                        success:function (recvusers){
+                            console.log(recvusers);
+                            var doctor = []
+                            $.each(recvusers.result, function(i,user){
+                                doctor.push( { key:user._id, label: user.niceName});
+                            })*/
+                    scheduler.config.lightbox.sections = [
+                        { name: "Paciente", options: pacientes, map_to: "paciente", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true , focus: true },
+                        //{ name: "nombre paciente", height: 100, map_to: "text", type: "text"},
+                        { name: "Notas de la visita", height: 100, map_to: "notas", type: "textarea"},
+                        { name: "Doctor", options: doctor, map_to: "doctor", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
+                        { name: "Tipo de visita", options: visitas, map_to: "tipo_visita", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
+                        { name: "Hora de la visita", height: 72, type: "time", map_to: "auto"}
+                    ];
+                    /*}
+                })*/
+                }
+            })
 
-    scheduler.templates.xml_date = function(value){ return new Date(value); };
-    scheduler.load("/data", "json");
 
-    scheduler.config.xml_date="%Y-%m-%d %H:%i";
+        }
 
-    var dp = new dataProcessor("/data");
-    dp.init(scheduler);
-    dp.setTransactionMode("POST", false);
-</script>
+
+    </script>
+
+</head>
 
 <body onload="init();">
 <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
@@ -91,10 +174,13 @@
         <div class="dhx_cal_prev_button">&nbsp;</div>
         <div class="dhx_cal_next_button">&nbsp;</div>
         <div class="dhx_cal_today_button"></div>
+        <div class="" name="Export_tab"  style="right:280px;"></div>
+
+
         <div class="dhx_cal_date"></div>
-        <div class="dhx_cal_tab" name="day_tab"></div>
-        <div class="dhx_cal_tab" name="week_tab"></div>
-        <div class="dhx_cal_tab" name="month_tab"></div>
+        <div class="dhx_cal_tab" name="day_tab" style="right:204px;" ></div>
+        <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+        <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
     </div>
     <div class="dhx_cal_header">
     </div>

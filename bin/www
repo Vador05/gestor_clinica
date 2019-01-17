@@ -12,5 +12,5 @@ routeInjector.loadPlugin(path.join(__dirname, '..', '..', '..', 'plugins_dev', '
 */
 
 routeInjector.start(function () {
-    console.log("Hola", routeInjector.version);
+    console.log("Esto ya funciona, necesito una cerveza !!!", routeInjector.version);
 });

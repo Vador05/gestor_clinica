@@ -3,8 +3,8 @@ var backoffice = require('./backoffice');
 module.exports = {
     id: "_id",
     path: "tipovisita",
-    plural: "tipovisitass",
-    displayField: "tipo",
+    plural: "tipovisitas",
+    displayField: "nombre",
     extraDisplayFields: ["precio"],
     get: {
 

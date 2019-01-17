@@ -5,14 +5,15 @@ var mongoose = require('mongoose')
     , jsonform = require('route-injector').MongooseJsonform;
 
 var schema = new Schema({
-	horainicio: {type: Date, required: false, feedback: false},
-	horafinal: {type: Date, required: false, feedback: false},
-	paciente: {type: ObjectId, ref: "Paciente"},
-	doctor: {type: ObjectId, ref: "User"},
-	tipovisita: {type: ObjectId, ref: "TipoVisita"},
+        horainicio: {type: Date, required: false, feedback: false,title:"Hora inicio"},
+        horafinal: {type: Date, required: false, feedback: false,title:"Hora final"},
+        paciente: {type: ObjectId, ref: "Paciente", readonly: true},
+        doctor:{type:String},// {type: ObjectId, ref: "User"},
+        tipovisita: {type: ObjectId, ref: "TipoVisita",title:"Tipo de visita"},
         comentarios: {type:String, format: 'textarea',title:"Comentarios de la visita"},
-	//TODO Mutua automatico desde paciente
-	//TODO Precio automatico desde tipovisita
+        mutua :{type: ObjectId, ref: "Mutua",readonly: true},
+        precio:{type:Number,required: false, feedback: false, readonly: true},
+        offset:{type:Number,required: false, feedback: false, readonly: true}
     },
     {
         id: false

@@ -8,19 +8,19 @@ module.exports = {
         port: 40000
     },
     images: {
-        gallery: {
+      /*  gallery: {
             endpoint: "/gallery",
             filepath: __dirname + "/../../image",
             listDirectory: ["admin"],
             postImage: ["admin"],
             deleteImage: ["admin"]
-        },
+        },*/
         path: __dirname + "/../../image",
         cache: __dirname + "/../../image/.cache",
         galleryFolder: __dirname + "/../../images"
     },
     auth: true,
-    swagger: true,
+    swagger: false,
     logger: {
         level: 'debug'
     }

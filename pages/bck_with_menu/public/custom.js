@@ -8,7 +8,6 @@
 
     angular.module('injectorApp')
         .controller('withMenu', ['$scope', '$routeParams', function ($scope, $routeParams) {
-            console.log('custom controller');
             $scope.var = "Backoffice without menu :) " + $routeParams.variable;
         }])
 })();

@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
     , jsonform = require('route-injector').MongooseJsonform;
 
 var schema = new Schema({
-        tipo: {type: String, required: true, feedback: false},
+        nombre: {type: String, required: true, feedback: false},
         precio: {type: Number, required: true, feedback: false},
     },
     {

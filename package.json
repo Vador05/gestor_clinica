@@ -1,11 +1,12 @@
 {
-  "name": "routeinjectordemo",
+  "name": "gestorDclinica",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "route-injector": "^2.1.0",
+    "moment": "^2.23.0",
     "mongoose": "^4.5.8",
     "mongoose-schema-extend": "*",
+    "route-injector": "^2.1.0",
     "wordpress-hash-node": "*"
   },
   "devDependencies": {

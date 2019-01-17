@@ -6,7 +6,7 @@ var mongoose = require('mongoose')
 
 var schema = new Schema({
         nombre: {type: String, required: true, feedback: false},
-        nif: {type: Number, required: true, feedback: false},
+        nif: {type: String, required: true, feedback: false},
         direccion: {type: String, required: false, feedback: false},
     },
     {

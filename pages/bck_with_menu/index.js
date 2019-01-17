@@ -5,9 +5,9 @@ module.exports = {
     controller: 'withMenu',
     auth: true,
     menu: {
-        title: "WithMenu",
-        section: "menu",
-        clickTo: 'with'
+        title: "Calendario",
+        section: "Calendario",
+        clickTo: 'cal'
     }
 
     //backoffice: false // standalone website

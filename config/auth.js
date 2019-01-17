@@ -49,15 +49,15 @@ function customLogin(req, login, pass, cbk) {
             console.error(err);
             cbk(500, err, null);
         } else {
-            //if (result == null) {
-            //    cbk(404, "User not found", null);
-            //} else if (pass && pass.indexOf('$P$') != -1 && (result.password == pass)) {
+            // if (result == null) {
+            //     cbk(404, "User not found", null);
+            // } else if (pass && pass.indexOf('$P$') != -1 && (result.password == pass)) {
             //    cbk(200, "", result);
-            //} else if (!require('wordpress-hash-node').CheckPassword(pass, result.password)) {
-            //    cbk(405, "Incorrect username or password", null);
-            //} else {
-            //    cbk(200, "", result);
-            //}
+            //  else if (!require('wordpress-hash-node').CheckPassword(pass, result.password)) {
+            //     cbk(405, "Incorrect username or password", null);
+            // } else {
+            //     cbk(200, "", result);
+            // }
             if (result == null) {
                 cbk(404, "User not found", null);
             } else if (pass == result.password) {
