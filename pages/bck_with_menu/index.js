@@ -7,7 +7,7 @@ module.exports = {
     menu: {
         title: "Calendario",
         section: "Calendario",
-        clickTo: 'cal'
+        clickTo: 'with'
     }
 
     //backoffice: false // standalone website
