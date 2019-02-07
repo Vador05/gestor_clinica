@@ -19,10 +19,28 @@
             height: 100%;
             overflow: hidden;
         }
+
     </style>
 
     <script type="text/javascript" charset="utf-8">
-        scheduler.locale.labels.export_tab = "Export"
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+
         var pacientes;
         if (!window.dhtmlXCombo)
             alert("Faltan archivos en la configuracion, por favor contacte con su proveedor.");
@@ -32,19 +50,19 @@
             return true;
         });
         scheduler.attachEvent("onLightbox", function (id){
-            console.log("On  Lightbox") ;
-            console.log(pacientes);
+          //  console.log("On  Lightbox") ;
+           // console.log(pacientes);
 
         });
         function init() {
-            console.log("onInit");
+           // console.log("onInit");
 
             $.ajax({
                 type: 'GET',
                 url: '/pacientes',
                 success:function (recvpacientes){
                     console.log(recvpacientes);
-                    pacientes = []
+                    pacientes = [];
                     $.each(recvpacientes.result, function(i,paciente){
                         pacientes.push( { key:paciente._id, label: String(paciente.nombre+" "+paciente.apellido) ,testo:String(paciente.nombre+" "+paciente.apellido)});//TODO text value String(paciente.nombre+" "+paciente.apellido)
                         console.log(pacientes);
@@ -53,32 +71,30 @@
                         type: 'GET',
                         url: '/tipovisitas',
                         success:function (recvvisitas){
-                            var visitas= []
+                            var visitas= [];
                             $.each(recvvisitas.result, function(i,visita){
                                 visitas.push( { key:visita._id, label: visita.nombre });
                             })
-                            var doctor = [{key: "giro",label:"Dr.Girones"}]
+                            var doctor = [];
 
-                            /* //TODO on the superintegration where authorization could be checked.
+
                             $.ajax({
                                 type: 'GET',
                                 url: '/users',
+                                headers: {"Authorization":   "BEARER "+JSON.parse(getCookie("user")).token},
                                 success:function (recvusers){
-                                    console.log(recvusers);
-                                    var doctor = []
                                     $.each(recvusers.result, function(i,user){
                                         doctor.push( { key:user._id, label: user.niceName});
-                                    })*/
+                                    })
                                     scheduler.config.lightbox.sections = [
                                         { name: "Paciente", options: pacientes, map_to: "paciente", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true , focus: true },
-                                        //{ name: "nombre paciente", height: 100, map_to: "text", type: "text"},
                                         { name: "Notas de la visita", height: 100, map_to: "notas", type: "textarea"},
                                         { name: "Doctor", options: doctor, map_to: "doctor", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
                                         { name: "Tipo de visita", options: visitas, map_to: "tipo_visita", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
                                         { name: "Hora de la visita", height: 72, type: "time", map_to: "auto"}
                                     ];
-                                /*}
-                            })*/
+                                }
+                            })
                         }
                     })
 
@@ -95,8 +111,6 @@
             scheduler.config.auto_end_date = true;
             scheduler.config.details_on_create = true;
             scheduler.config.details_on_dblclick = true;
-
-            scheduler.locale.labels.section_snack = "Choose your snack:";
 
 
             scheduler.config.xml_date = "%Y-%m-%d %H:%i";
@@ -137,26 +151,25 @@
                     })
                     var doctor = [{key: "giro",label:"Dr.Girones"}]
 
-                    /* //TODO on the superintegration where authorization could be checked.
                     $.ajax({
                         type: 'GET',
                         url: '/users',
+                        headers: {"Authorization":   "BEARER "+JSON.parse(getCookie("user")).token},
                         success:function (recvusers){
                             console.log(recvusers);
-                            var doctor = []
+                            var doctor = [];
                             $.each(recvusers.result, function(i,user){
                                 doctor.push( { key:user._id, label: user.niceName});
-                            })*/
+                            })
                     scheduler.config.lightbox.sections = [
                         { name: "Paciente", options: pacientes, map_to: "paciente", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true , focus: true },
-                        //{ name: "nombre paciente", height: 100, map_to: "text", type: "text"},
                         { name: "Notas de la visita", height: 100, map_to: "notas", type: "textarea"},
                         { name: "Doctor", options: doctor, map_to: "doctor", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
                         { name: "Tipo de visita", options: visitas, map_to: "tipo_visita", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true },
                         { name: "Hora de la visita", height: 72, type: "time", map_to: "auto"}
                     ];
-                    /*}
-                })*/
+                    }
+                })
                 }
             })
 

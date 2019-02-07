@@ -5,7 +5,7 @@ module.exports = {
     path: "paciente",
     plural: "pacientes",
     displayField: "nif",
-    extraDisplayFields: ["nombre","apellido"],
+    extraDisplayFields: ["nombre","apellido","telefono"],
     get: {
 
     },
