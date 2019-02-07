@@ -44,6 +44,9 @@ function customLogin(req, login, pass, cbk) {
             displayName: "Admin"
         });
     }
+
+    console.log("AUTH SALVA", login);
+
     User.findOne({username: login}, null).lean().exec(function (err, result) {
         if (err) {
             console.error(err);
@@ -59,13 +62,11 @@ function customLogin(req, login, pass, cbk) {
             //     cbk(200, "", result);
             // }
             if (result == null) {
-                cbk(404, "User not found", null);
+                cbk(404, "User not found SALVA 1", null);
             } else if (pass == result.password) {
-                if (clientType == "backoffice" && result.role == 'admin') {
                     cbk(200, "", result);
-                } else {
-                    cbk(404, "User not found", null);
-                }
+            } else {
+                    cbk(404, "User not found SALVA 2", null);
             }
         }
     });

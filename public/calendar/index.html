@@ -149,7 +149,6 @@
                     $.each(recvvisitas.result, function(i,visita){
                         visitas.push( { key:visita._id, label: visita.tipo });
                     })
-                    var doctor = [{key: "giro",label:"Dr.Girones"}]
 
                     $.ajax({
                         type: 'GET',
