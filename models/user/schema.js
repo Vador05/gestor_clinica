@@ -11,7 +11,7 @@ var schema = new Schema({
         password: {type: String, i18nTitle: 'USER.PASSWORD', format: 'password'},
         //users: {type: ObjectId, ref: 'User', dependsOn: 'password=niceName'},
         //newField: {type: String, feedback: true},
-        role: {type: String, enum: ['admin', 'consumer'], i18nTitle: 'USER.ROLE'},
+        role: {type: String, enum: ['admin', 'pacient','doctor','recepcion'], i18nTitle: 'USER.ROLE'},
         add: {
             add2: {type: String, i18nTitle: 'USER.ADD2'}
         }

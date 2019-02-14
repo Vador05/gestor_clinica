@@ -8,6 +8,7 @@ var schema = new Schema({
         nombre: {type: String, required: true, feedback: false},
         nif: {type: String, required: true, feedback: false},
         direccion: {type: String, required: false, feedback: false},
+        telefono: {type: String, required: false, feedback: false}
     },
     {
         id: false

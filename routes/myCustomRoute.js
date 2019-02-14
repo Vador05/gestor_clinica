@@ -46,56 +46,102 @@ module.exports.route = function (app, injector) {
 
 
     app.get('/data', function (req, res) {
-        console.log("HOLA SALVA");
-        cita.find({}).populate("paciente").exec(function (err, citas) {
-            //cita.find({}).exec( function (err, citas) {
-            if (err) {
-                return res.send(500, err.message);
-            }
-            else if (citas == undefined) {
-                res.send(500, "No Citas on the DB");
-            }
+        console.log("LO ESTOY PETANDO!");
 
-            var result = [];
 
-            for (var i = 0; i < citas.length; i++) {
-                var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
-                var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
-                console.log(horai);
-                horai = horai.toISOString(); //citas[i].horainicio.toISOString();
-                //console.log(String(horai));
-                horai = String(horai).split("T");
-                var horaii = horai[1].split(":");
-                horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
-                horaf = horaf.toISOString();
-                horaf = String(horaf).split("T");
-                var horaff = horaf[1].split(":");
-                horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
-                result.push({
-                    "id": citas[i]._id,
-                    "start_date": horai,
-                    "end_date": horaf,
-                    "paciente": citas[i].paciente._id,
-                    "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
-                    "doctor": citas[i].doctor,
-                    "tipo_visita": citas[i].tipovisita,
-                    "notas": citas[i].comentarios,
+        if (req.query.dr) {
+            var dr = req.query.dr;
+            console.log(req.query.dr);
+            cita.find({doctor : dr}).populate("paciente").exec(function (err, citas) {
+                //cita.find({}).exec( function (err, citas) {
+                if (err) {
+                    return res.send(500, err.message);
+                }
+                else if (citas == undefined) {
+                    res.send(500, "No Citas on the DB");
+                }
 
-                })
-            }
+                var result = [];
 
-            res.status(200).json(result);
-            console.log("ADIOS SALVA");
-        })
+                for (var i = 0; i < citas.length; i++) {
+                    var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
+                    var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
+                    // console.log(horai);
+                    horai = horai.toISOString(); //citas[i].horainicio.toISOString();
+                    //console.log(String(horai));
+                    horai = String(horai).split("T");
+                    var horaii = horai[1].split(":");
+                    horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
+                    horaf = horaf.toISOString();
+                    horaf = String(horaf).split("T");
+                    var horaff = horaf[1].split(":");
+                    horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
+                    result.push({
+                        "id": citas[i]._id,
+                        "start_date": horai,
+                        "end_date": horaf,
+                        "paciente": citas[i].paciente._id,
+                        "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
+                        "doctor": citas[i].doctor,
+                        "tipo_visita": citas[i].tipovisita,
+                        "notas": citas[i].comentarios,
+
+                    })
+                }
+
+                res.status(200).json(result);
+            })
+        }else {
+
+            cita.find({}).populate("paciente").exec(function (err, citas) {
+                //cita.find({}).exec( function (err, citas) {
+                if (err) {
+                    return res.send(500, err.message);
+                }
+                else if (citas == undefined) {
+                    res.send(500, "No Citas on the DB");
+                }
+
+                var result = [];
+
+                for (var i = 0; i < citas.length; i++) {
+                    var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
+                    var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
+                    // console.log(horai);
+                    horai = horai.toISOString(); //citas[i].horainicio.toISOString();
+                    //console.log(String(horai));
+                    horai = String(horai).split("T");
+                    var horaii = horai[1].split(":");
+                    horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
+                    horaf = horaf.toISOString();
+                    horaf = String(horaf).split("T");
+                    var horaff = horaf[1].split(":");
+                    horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
+                    result.push({
+                        "id": citas[i]._id,
+                        "start_date": horai,
+                        "end_date": horaf,
+                        "paciente": citas[i].paciente._id,
+                        "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
+                        "doctor": citas[i].doctor,
+                        "tipo_visita": citas[i].tipovisita,
+                        "notas": citas[i].comentarios,
+
+                    })
+                }
+
+                res.status(200).json(result);
+            })
+        }
 
     });
-
 
     app.post('/data', function (req, res) {
         var data = req.body;
         var mode = data["!nativeeditor_status"];
         var sid = data.id;
         var tid = sid;
+
         //Let's check what we are getting :
         //console.log(data);
         //The calendar by default adds some id that we don't want to preserve in order
@@ -183,8 +229,8 @@ module.exports.route = function (app, injector) {
                             ncita.save(function (err) {
                                 if (err) res.status(500).send('Internal server error');
                                 else res.status(200).json(ncita);
-                                console.log("Saving the following data");
-                                console.log(ncita._doc);
+                              /*  console.log("Saving the following data");
+                                console.log(ncita._doc);*/
                             })
                         }
                     })
@@ -194,7 +240,7 @@ module.exports.route = function (app, injector) {
 
 
             //db.event.insert(data, update_response);
-            console.log("Añadiendo un evento!");
+           // console.log("Añadiendo un evento!");
         }
         else if (mode == "deleted") {
             cita.remove({"_id": sid},
@@ -214,7 +260,7 @@ module.exports.route = function (app, injector) {
 
     app.post('/dataexport',function(req,res){
         var data = req.body;
-        console.log(data);
+     //   console.log(data);
 
         cita.find({
             horainicio: {

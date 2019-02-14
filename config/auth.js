@@ -62,11 +62,12 @@ function customLogin(req, login, pass, cbk) {
             //     cbk(200, "", result);
             // }
             if (result == null) {
-                cbk(404, "User not found SALVA 1", null);
-            } else if (pass == result.password) {
+                //cbk(404, "User not found SALVA 1", null);
+                cbk(404, null);
+            } else if (pass == result.password && result.role!= 'pacient') {
                     cbk(200, "", result);
             } else {
-                    cbk(404, "User not found SALVA 2", null);
+                    cbk(404, null);
             }
         }
     });

@@ -64,7 +64,7 @@
                     console.log(recvpacientes);
                     pacientes = [];
                     $.each(recvpacientes.result, function(i,paciente){
-                        pacientes.push( { key:paciente._id, label: String(paciente.nombre+" "+paciente.apellido) ,testo:String(paciente.nombre+" "+paciente.apellido)});//TODO text value String(paciente.nombre+" "+paciente.apellido)
+                        pacientes.push( { key:paciente._id, label: String(paciente.nombre+" "+paciente.apellido) ,testo:String(paciente.nombre+" "+paciente.apellido)});
                         console.log(pacientes);
                     })
                     $.ajax({
@@ -83,8 +83,14 @@
                                 url: '/users',
                                 headers: {"Authorization":   "BEARER "+JSON.parse(getCookie("user")).token},
                                 success:function (recvusers){
+                                    var ele = document.getElementById('Cal_selector');
+
                                     $.each(recvusers.result, function(i,user){
-                                        doctor.push( { key:user._id, label: user.niceName});
+                                        if(user.role == "doctor") {
+                                            doctor.push({key: user._id, label: user.niceName});
+                                            ele.innerHTML = ele.innerHTML +  '<option value="' + user._id + '">' +user.niceName + '</option>';
+
+                                        }
                                     })
                                     scheduler.config.lightbox.sections = [
                                         { name: "Paciente", options: pacientes, map_to: "paciente", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true , focus: true },
@@ -133,7 +139,7 @@
 
         }
 
-        scheduler.date.workweek_start = function (){
+        /*scheduler.date.workweek_start = function (){
             dhtmlx.message({
                 text:"Preparando sus datos!",
                 expire:1000*30
@@ -155,11 +161,17 @@
                         url: '/users',
                         headers: {"Authorization":   "BEARER "+JSON.parse(getCookie("user")).token},
                         success:function (recvusers){
-                            console.log(recvusers);
+                            console.log("LO PETO MR.CROQUETO");
                             var doctor = [];
                             $.each(recvusers.result, function(i,user){
                                 doctor.push( { key:user._id, label: user.niceName});
                             })
+
+                            var ele = document.getElementById('Cal_selector');
+                            for (var i = 0; i < doctor.length; i++) {
+                                // POPULATE SELECT ELEMENT WITH JSON.
+                                ele.innerHTML = ele.innerHTML +  '<option value="' + birds[i]['_id'] + '">' + birds[i]['niceName'] + '</option>';
+                            }
                     scheduler.config.lightbox.sections = [
                         { name: "Paciente", options: pacientes, map_to: "paciente", type: "combo", image_path: "//cdn.dhtmlx.com/edge/imgs/", height:30, filtering: true , focus: true },
                         { name: "Notas de la visita", height: 100, map_to: "notas", type: "textarea"},
@@ -173,10 +185,17 @@
             })
 
 
+        }*/
+
+
+        function getNewCal(){
+           console.log("Me cambian el Drsito!");
+            var dr = document.getElementById("Cal_selector").value;
+            scheduler.clearAll();
+           scheduler.load("/data?dr="+dr, "json");
         }
-
-
     </script>
+    Selecciona el calendario : <select name="Cal_selector" id="Cal_selector" onchange="getNewCal()"></select>
 
 </head>
 
@@ -186,7 +205,6 @@
         <div class="dhx_cal_prev_button">&nbsp;</div>
         <div class="dhx_cal_next_button">&nbsp;</div>
         <div class="dhx_cal_today_button"></div>
-        <div class="" name="Export_tab"  style="right:280px;"></div>
 
 
         <div class="dhx_cal_date"></div>
