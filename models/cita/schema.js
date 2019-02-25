@@ -7,11 +7,11 @@ var mongoose = require('mongoose')
 var schema = new Schema({
         horainicio: {type: Date, required: false, feedback: false,title:"Hora inicio"},
         horafinal: {type: Date, required: false, feedback: false,title:"Hora final"},
-        paciente: {type: ObjectId, ref: "Paciente", readonly: true},
+        paciente: {type: Schema.Types.Mixed, ref: "Paciente", denormalize:["nombre","apellido"]},
         doctor:{type:String},// {type: ObjectId, ref: "User"},
         tipovisita: {type: ObjectId, ref: "TipoVisita",title:"Tipo de visita"},
         comentarios: {type:String, format: 'textarea',title:"Comentarios de la visita"},
-        mutua :{type: ObjectId, ref: "Mutua",readonly: true},
+        mutua :{type: ObjectId, ref: "Mutua"},
         precio:{type:Number,required: false, feedback: false, readonly: true},
         offset:{type:Number,required: false, feedback: false, readonly: true}
     },

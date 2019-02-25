@@ -22,7 +22,8 @@ module.exports = {
         roles:["user"],
         profiles: {
             _default: {
-                populate:["tipovisita", "paciente"]
+//                populate:["tipovisita", "paciente"]
+                populate:["tipovisita"]
             }
         }
     },
