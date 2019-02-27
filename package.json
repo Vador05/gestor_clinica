@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "moment": "^2.23.0",
+    "mongoimport": "^1.0.6",
     "mongoose": "^4.5.8",
     "mongoose-schema-extend": "*",
     "route-injector": "^2.1.0",

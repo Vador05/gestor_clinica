@@ -12,7 +12,7 @@ var schema = new Schema({
         direccion: {type: String, required: false, feedback: false},
         provincia: {type: String, required: false, feedback: false},
         telefono: {type: String, required: false, feedback: false},
-        CP: {type: Number, required: false, feedback: false},
+        CP: {type: String, required: false, feedback: false},
         fechanacimiento: {type: Date, required: false, feedback: false},
         his: {type: Number, required: false, feedback: false},
         numeropaciente: {type: Number, required: false, feedback: false, readonly:true},

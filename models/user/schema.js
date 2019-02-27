@@ -12,9 +12,15 @@ var schema = new Schema({
         //users: {type: ObjectId, ref: 'User', dependsOn: 'password=niceName'},
         //newField: {type: String, feedback: true},
         role: {type: String, enum: ['admin', 'pacient','doctor','recepcion'], i18nTitle: 'USER.ROLE'},
-        add: {
-            add2: {type: String, i18nTitle: 'USER.ADD2'}
-        }
+        domicilio:{type: String},
+        dni:{type: String},
+        numeroColegiado:{type: String},
+        telefono:{type: String}
+
+
+        // add: {
+        //    add2: {type: String, i18nTitle: 'USER.ADD2'}
+        //}
     },
     {
         id: false
@@ -30,7 +36,7 @@ var schema = new Schema({
 
 //Is used to enable refection in security middleware
 schema.plugin(jsonform, {
-    excludedPaths: ['_id', '__v'] //these paths are generally excluded
+    excludedPaths: ['_id', '__v',] //these paths are generally excluded
 });
 
 schema.plugin(injector, require('./injector'));

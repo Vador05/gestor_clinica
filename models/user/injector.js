@@ -5,7 +5,7 @@ module.exports = {
     path: "user",
     plural: "users",
     displayField: "niceName",
-    extraDisplayFields: ["password"],
+    extraDisplayFields: ["username"],
     shard:{
         shardKey: "name",
         shardValues: ["A", "B", "C"]
@@ -31,7 +31,9 @@ module.exports = {
     import: {
         roles:["user"]
     },
-    validate: {},
+    validate: {
+       // roles:['admin','doctor','recepcion']
+    },
     backoffice: backoffice,
     /*form: {
         tabs: [
