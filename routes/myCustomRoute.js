@@ -52,7 +52,8 @@ module.exports.route = function (app, injector) {
         if (req.query.dr) {
             var dr = req.query.dr;
             console.log(req.query.dr);
-            cita.find({doctor : dr}).populate("paciente").exec(function (err, citas) {
+            cita.find({doctor : dr}).exec(function (err, citas) {
+            //cita.find({doctor : dr}).populate("paciente").exec(function (err, citas) {
                 //cita.find({}).exec( function (err, citas) {
                 if (err) {
                     return res.send(500, err.message);
@@ -92,9 +93,12 @@ module.exports.route = function (app, injector) {
                 res.status(200).json(result);
             })
         }else {
-
-            cita.find({}).populate("paciente").exec(function (err, citas) {
-                //cita.find({}).exec( function (err, citas) {
+            //Original function definition modified due the need of getting the patient data
+            //cita.find({}).exec( function (err, citas) {
+            //Definition of the function v.1 modified for use with populate to get more data about patients.
+            //cita.find({}).populate("paciente").exec(function (err, citas) {
+            //Definition V.2 using denormalization we create a object for patient which will contain the patient data avoiding the need of populate.
+            cita.find({}).exec(function (err, citas) {
                 if (err) {
                     return res.send(500, err.message);
                 }
@@ -117,6 +121,7 @@ module.exports.route = function (app, injector) {
                     horaf = String(horaf).split("T");
                     var horaff = horaf[1].split(":");
                     horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
+                    //console.log(citas[i]);
                     result.push({
                         "id": citas[i]._id,
                         "start_date": horai,
@@ -174,7 +179,11 @@ module.exports.route = function (app, injector) {
                             var ncita = {
                                 horainicio: data.start_date,
                                 horafinal: data.end_date,
-                                paciente: data.paciente,
+                                paciente : {
+                                    _id : data.paciente,
+                                    apellido : pacient.apellido,
+                                    nombre : pacient.nombre
+                                },
                                 doctor: data.doctor,
                                 tipovisita: data.tipo_visita,
                                 comentarios: data.notas,
@@ -193,6 +202,17 @@ module.exports.route = function (app, injector) {
                                     return res.send(todo);
                                 }
                             )
+                            pacient.proximavisita = data.start_date;
+                            paciente.findByIdAndUpdate(
+                                data.paciente,
+                                pacient,
+                                {new: true},
+                                (err, todo) => {
+                                    // Handle any possible database errors
+                                    //if (err) return res.status(500).send(err);
+                                    //    return res.send(todo);//TODO review if a messsage can be sent!
+                                }
+                            )
                         }
                     })
 
@@ -204,7 +224,7 @@ module.exports.route = function (app, injector) {
                 if (err) {
                     res.status(500).send("Internal server error");
                 } else {
-                    console.log("OFFSET---->" + data.end_date);//.getTimezoneOffset());
+                    //console.log("OFFSET---->" + data.end_date);//.getTimezoneOffset());
                     pacient = paciente(pacient)
                     // console.log("MUTUA------->>"+pacient.mutua);
 
@@ -212,11 +232,16 @@ module.exports.route = function (app, injector) {
                         if (err) {
                             res.status(500).send("Internal server error");
                         } else {
+                            //console.log(data);
                             var now = new Date();
                             var ncita = new cita({
                                 horainicio: data.start_date,
                                 horafinal: data.end_date,
-                                paciente: data.paciente,
+                                paciente : {
+                                    _id : data.paciente,
+                                    apellido : pacient.apellido,
+                                    nombre : pacient.nombre
+                                },
                                 doctor: data.doctor,
                                 tipovisita: data.tipo_visita,
                                 comentarios: data.notas,
@@ -236,6 +261,20 @@ module.exports.route = function (app, injector) {
                     })
 
                 }
+                pacient.ultimavisita = pacient.proximavisita;
+                pacient.proximavisita = data.start_date;
+                pacient.numvisita +=1;
+                //TODO calcular edad
+                paciente.findByIdAndUpdate(
+                    data.paciente,
+                    pacient,
+                    {new: true},
+                    (err, todo) => {
+                        // Handle any possible database errors
+                        //if (err) return res.status(500).send(err);
+                    //    return res.send(todo);//TODO review if a messsage can be sent!
+                    }
+                )
             })
 
 
@@ -243,16 +282,36 @@ module.exports.route = function (app, injector) {
            // console.log("Añadiendo un evento!");
         }
         else if (mode == "deleted") {
-            cita.remove({"_id": sid},
-                function (err) {
-                    if (err) {
-                        res.send(err);
-                    }
-                    else {
-                        res.status(200).send("cita  borrada correctamente");
-                    }
-                });
+            console.log(data);
+            paciente.findOne({_id: data.paciente}, function (err, pacient) {
+                if (err) {
+                    res.status(500).send("Internal server error");
+                } else {
+                    pacient.proximavisita = pacient.ultimavisita;
+                    pacient.numvisita -= 1;
+                    paciente.findByIdAndUpdate(
+                        data.paciente,
+                        pacient,
+                        {new: true},
+                        (err, todo) => {
+                            // Handle any possible database errors
+                            //if (err) return res.status(500).send(err);
+                            //    return res.send(todo);//TODO review if a messsage can be sent!
+                        }
+                    )
+                    cita.remove({"_id": sid},
+                        function (err) {
+                            if (err) {
+                                res.send(err);
+                            }
+                            else {
+                                res.status(200).send("cita  borrada correctamente");
+                            }
+                        });
+                }
+            });
         }
+
         else
             res.send("Not supported operation");
 
@@ -269,7 +328,7 @@ module.exports.route = function (app, injector) {
             }
         })
         res.send(200)
-        console.log(data.min_date);
+       // console.log(data.min_date);
 
 
 

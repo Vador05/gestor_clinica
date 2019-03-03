@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0e370183-e071-468e-8235-4cf35b5e2634" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/cita/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/cita/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/paciente/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/paciente/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user/injector.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/injector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/myCustomRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/myCustomRoute.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,20 +17,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/paciente/schema.js">
+      <file leaf-file-name="myCustomRoute.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/myCustomRoute.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="schema.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/cita/schema.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+            <state relative-caret-position="319">
+              <caret line="312" column="9" lean-forward="true" selection-start-line="312" selection-start-column="9" selection-end-line="312" selection-end-column="9" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,6 +45,7 @@
       <find>Export</find>
       <find>auth</find>
       <find>role ==</find>
+      <find>console.log</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -74,11 +64,11 @@
         <option value="$PROJECT_DIR$/config/auth.js" />
         <option value="$PROJECT_DIR$/models/mutua/schema.js" />
         <option value="$PROJECT_DIR$/public/calendar/index.html" />
-        <option value="$PROJECT_DIR$/routes/myCustomRoute.js" />
         <option value="$PROJECT_DIR$/models/user/injector.js" />
         <option value="$PROJECT_DIR$/models/user/schema.js" />
         <option value="$PROJECT_DIR$/models/paciente/schema.js" />
         <option value="$PROJECT_DIR$/models/cita/schema.js" />
+        <option value="$PROJECT_DIR$/routes/myCustomRoute.js" />
       </list>
     </option>
   </component>
@@ -114,62 +104,6 @@
             <path>
               <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
               <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="cita" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="mutua" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="paciente" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="tipovisita" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="calendar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -218,35 +152,37 @@
       <workItem from="1549282952880" duration="1359000" />
       <workItem from="1549539006868" duration="4462000" />
       <workItem from="1549958261458" duration="15900000" />
-      <workItem from="1551239854755" duration="6420000" />
+      <workItem from="1551239854755" duration="9506000" />
+      <workItem from="1551331928644" duration="4842000" />
+      <workItem from="1551569224350" duration="3101000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43376000" />
+    <option name="totallyTimeSpent" value="54405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="3204" height="1752" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.122345485" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.122190565" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.503537" side_tool="true" weight="0.32840833" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49646303" visible="true" weight="0.32840833" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49646303" visible="true" weight="0.32797858" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,9 +197,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/cita/injector.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -502,16 +435,6 @@
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/myCustomRoute.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="137" selection-start-line="137" selection-end-line="137" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/user/functions.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -551,17 +474,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/paciente/schema.js">
+    <entry file="file://$PROJECT_DIR$/models/cita/schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+        <state relative-caret-position="290">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/cita/schema.js">
+    <entry file="file://$PROJECT_DIR$/models/paciente/schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        <state relative-caret-position="522">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="4093" column="12" selection-start-line="4093" selection-start-column="12" selection-end-line="4093" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/myCustomRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="312" column="9" lean-forward="true" selection-start-line="312" selection-start-column="9" selection-end-line="312" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
