@@ -5,7 +5,7 @@ module.exports = {
     path: "cita",
     plural: "citas",
     displayField: "paciente.nombre",
-    extraDisplayFields: ["paciente.apellido","horainicio","doctor","tipovisita.nombre"],
+    extraDisplayFields: ["paciente.apellido","horainicio","doctor.niceName","tipovisita.nombre"],
     get: {
 
     },
@@ -22,8 +22,7 @@ module.exports = {
         roles:["user"],
         profiles: {
             _default: {
-//                populate:["tipovisita", "paciente"]
-                populate:["tipovisita"]
+                populate:["tipovisita","doctor"]
             }
         }
     },
@@ -31,8 +30,8 @@ module.exports = {
         roles:["user"],
         profiles: {
             _default: {
-                populate:["mutua", "paciente"],
-                addFields:["mutua.nombre","paciente.nombre","paciente.apellido","paciente.telefono"]
+                populate:["mutua","doctor"],
+                addFields:["mutua.nombre","paciente.nombre","paciente.apellido","paciente.telefono","doctor.niceName"]
             }
         }
     },

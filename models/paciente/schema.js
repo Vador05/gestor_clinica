@@ -15,15 +15,15 @@ var schema = new Schema({
         CP: {type: String, required: false, feedback: false},
         fechanacimiento: {type: Date, required: false, feedback: false},
         his: {type: Number, required: false, feedback: false},
-        numeropaciente: {type: Number, required: false, feedback: false, readonly:true},
+        numeropaciente: {type: Number, required: false, feedback: false},//TODO No modificable desde pagina
         numvisita: {type: Number, required: false, feedback: false},
         diagnostico: {type: ObjectId, ref: "Diagnostico"},
         mutua: {type: ObjectId, ref: "Mutua"},
         comentarios: {type:String, format: 'textarea'},
-        edad:{type: Number, required: false, feedback: false,readonly: true},//TODO
+        edad:{type: Number, required: false, feedback: false},//TODO No modificable desde pagina
         ultimavisita: {type: Date, required: false, feedback: false},//TODO
-        proximavisita: {type: Date, required: false, feedback: false}//TODO
-
+        proximavisita: {type: Date, required: false, feedback: false},//TODO
+        seguimiento: {type: Boolean,required: false}
 
     },
     {
