@@ -1,4 +1,5 @@
 module.exports = {
+    //ROLE PERMISIONS !
     adminRole: "admin",
     /*shards: {
         'admin': {
@@ -10,13 +11,13 @@ module.exports = {
     },*/
     routes: {
         Basic: {
-            all: ['admin', 'user'],
-            get: ['user']
+            all: ['admin','doctor','recepcion'],
+            get: ['user','pacient']
         }, Advanced: {
-            post: ['user']
+            post: ['admin','doctor','recepcion']
         },
         User:{
-            all:['admin']
+            all:['admin','doctor','recepcion']// TODO review, with the actual version the reception staff need to see the user list
         }
     }
 };
