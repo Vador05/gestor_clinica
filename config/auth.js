@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 module.exports = {
     //engine: 'oauth2-injector',
     login: {
@@ -45,28 +47,26 @@ function customLogin(req, login, pass, cbk) {
         });
     }
 
-    console.log("AUTH SALVA", login);
-
+   //Implemented new pbkdf2 password protection technology!
     User.findOne({username: login}, null).lean().exec(function (err, result) {
         if (err) {
             console.error(err);
             cbk(500, err, null);
         } else {
-            // if (result == null) {
-            //     cbk(404, "User not found", null);
-            // } else if (pass && pass.indexOf('$P$') != -1 && (result.password == pass)) {
-            //    cbk(200, "", result);
-            //  else if (!require('wordpress-hash-node').CheckPassword(pass, result.password)) {
-            //     cbk(405, "Incorrect username or password", null);
-            // } else {
-            //     cbk(200, "", result);
-            // }
             if (result == null) {
                 //cbk(404, "User not found SALVA 1", null);
-                cbk(404, null);
-            } else if (pass == result.password && result.role!= 'pacient') {
+                cbk(405, "Incorrect username or password", null);
+            } else if (result.role!= 'pacient') {
+                var originalHash = result.password.split('$')[1];
+                var salt = result.password.split('$')[0];
+                var hash = crypto.pbkdf2Sync(pass, salt, 2048, 32, 'sha512').toString('hex');
+
+                if(hash === originalHash){
                     cbk(200, "", result);
-            } else {
+                }else{
+                    cbk(405, "Incorrect username or password", null);
+                }
+            }else {
                     cbk(404, null);
             }
         }

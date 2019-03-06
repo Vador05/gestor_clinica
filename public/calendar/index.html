@@ -117,8 +117,8 @@
             scheduler.config.auto_end_date = true;
             scheduler.config.details_on_create = true;
             scheduler.config.details_on_dblclick = true;
-
-
+            scheduler.config.show_loading = true;//Enable a visible spinner that shows that data is being loaded for the cases where huge data is required!
+            scheduler.setLoadMode("week");
             scheduler.config.xml_date = "%Y-%m-%d %H:%i";
             scheduler.init('scheduler_here', new Date(), "week");
             scheduler.load("/data", "json", function(){

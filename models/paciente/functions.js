@@ -6,14 +6,19 @@ module.exports = function (schema) {
         var paciente = mongoose.model('Paciente');
         var that = this;
 
-
-        this.numvisita =0;
+        if(!this.numvisita) {
+            this.numvisita = 0;
+        }
+        if(!this.numeropaciente){
         //Get the last patient and increase index to get the index for the next member
         paciente.findOne({}).sort('-numeropaciente').exec(function (err, member) {
             that.numeropaciente = member.numeropaciente+1;
             next();
             //TODO nif_check unfinished;
-        });
+        });}else{
+            next();
+
+        }
 
 
 

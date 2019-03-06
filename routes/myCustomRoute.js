@@ -44,7 +44,7 @@ module.exports.route = function (app, injector) {
         return res.end();
     });
 
-
+//TODO update get to handle just the exact data: http://localhost:40000/data?dr=5c76400d9eb28ce79b820d7a&timeshift=-60&from=2019-02-25&to=2019-04-01
     app.get('/data', function (req, res) {
         console.log("LO ESTOY PETANDO!");
 

@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e370183-e071-468e-8235-4cf35b5e2634" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/permissions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/paciente/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/paciente/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/functions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user/schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user/schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/calendar/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/calendar/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/myCustomRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/myCustomRoute.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,14 +30,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myCustomRoute.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/myCustomRoute.js">
+      <file leaf-file-name="functions.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/user/functions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3915">
-              <caret line="157" column="20" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="232">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/user/schema.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="injector.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/user/injector.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-151">
+              <caret line="8" column="9" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/auth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="567">
+              <caret line="66" column="69" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -42,25 +70,21 @@
         <entry file="file://$PROJECT_DIR$/models/paciente/functions.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="permissions.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/permissions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
-            </state>
-          </provider>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/paciente/index.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="schema.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/user/schema.js">
+      <file leaf-file-name="injector.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/paciente/injector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="13" column="75" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="75" />
+            <state>
+              <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -86,6 +110,9 @@
       <find>addFields</find>
       <find>permissionsByRole</find>
       <find>whitelist</find>
+      <find>generator</find>
+      <find>if</find>
+      <find>admin</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -101,18 +128,19 @@
         <option value="$PROJECT_DIR$/config/export_config.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/models/paciente/injector.js" />
-        <option value="$PROJECT_DIR$/config/auth.js" />
         <option value="$PROJECT_DIR$/models/mutua/schema.js" />
-        <option value="$PROJECT_DIR$/public/calendar/index.html" />
         <option value="$PROJECT_DIR$/models/user/injector.js" />
-        <option value="$PROJECT_DIR$/models/user/schema.js" />
         <option value="$PROJECT_DIR$/models/cita/schema.js" />
-        <option value="$PROJECT_DIR$/routes/myCustomRoute.js" />
         <option value="$PROJECT_DIR$/models/cita/functions.js" />
         <option value="$PROJECT_DIR$/models/paciente/schema.js" />
         <option value="$PROJECT_DIR$/models/cita/injector.js" />
-        <option value="$PROJECT_DIR$/models/paciente/functions.js" />
         <option value="$PROJECT_DIR$/config/permissions.js" />
+        <option value="$PROJECT_DIR$/public/calendar/index.html" />
+        <option value="$PROJECT_DIR$/routes/myCustomRoute.js" />
+        <option value="$PROJECT_DIR$/config/auth.js" />
+        <option value="$PROJECT_DIR$/models/paciente/functions.js" />
+        <option value="$PROJECT_DIR$/models/user/schema.js" />
+        <option value="$PROJECT_DIR$/models/user/functions.js" />
       </list>
     </option>
   </component>
@@ -157,7 +185,18 @@
               <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
               <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="paciente" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gestor_clinica" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gestor_clinica" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -210,12 +249,12 @@
       <workItem from="1551239854755" duration="9506000" />
       <workItem from="1551331928644" duration="4842000" />
       <workItem from="1551569224350" duration="16399000" />
-      <workItem from="1551762766010" duration="355000" />
+      <workItem from="1551762766010" duration="9395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68058000" />
+    <option name="totallyTimeSpent" value="77098000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="0" width="3204" height="1752" extended-state="6" />
@@ -230,7 +269,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49646303" visible="true" weight="0.35609102" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49646303" visible="true" weight="0.42637214" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -253,13 +292,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/calendar/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2508">
-          <caret line="76" column="40" lean-forward="true" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/cita/injector.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -424,24 +456,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2178">
-          <caret line="66" column="76" selection-start-line="66" selection-start-column="76" selection-end-line="66" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/mutua/schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/calendar/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6336">
-          <caret line="192" selection-start-line="192" selection-end-line="192" />
         </state>
       </provider>
     </entry>
@@ -453,13 +471,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/tipovisita/functions.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/paciente/injector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mongoose/lib/model.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -477,9 +488,6 @@
     <entry file="file://$PROJECT_DIR$/models/paciente/backoffice.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/paciente/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/user/backoffice.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -487,29 +495,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/user/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="2" column="43" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/user/index.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/cita/functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" selection-start-column="36" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/user/injector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/cita/injector.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -535,13 +522,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/calendar/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="114" column="36" lean-forward="true" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/myCustomRoute.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3915">
-          <caret line="157" column="20" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
+        <state relative-caret-position="177">
+          <caret line="262" column="17" selection-start-line="262" selection-start-column="17" selection-end-line="262" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/calendar/codebase/sources/skins/dhtmlxscheduler_material.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/permissions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/cita/functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="36" selection-start-column="36" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -552,24 +563,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="66" column="69" selection-start-line="66" selection-start-column="69" selection-end-line="66" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/paciente/injector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/paciente/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/paciente/functions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/user/injector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-151">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/user/schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="13" column="75" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="75" />
+        <state relative-caret-position="255">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/permissions.js">
+    <entry file="file://$PROJECT_DIR$/models/user/functions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        <state relative-caret-position="232">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
         </state>
       </provider>
     </entry>

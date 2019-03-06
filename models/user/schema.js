@@ -32,7 +32,7 @@ var schema = new Schema({
 //    this.__req = req;
 //};
 
-//require('./functions')(schema);
+require('./functions')(schema);
 
 //Is used to enable refection in security middleware
 schema.plugin(jsonform, {
