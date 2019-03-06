@@ -47,97 +47,98 @@ module.exports.route = function (app, injector) {
 //TODO update get to handle just the exact data: http://localhost:40000/data?dr=5c76400d9eb28ce79b820d7a&timeshift=-60&from=2019-02-25&to=2019-04-01
     app.get('/data', function (req, res) {
         console.log("LO ESTOY PETANDO!");
+        var from = req.query.from;
+        var to = req.query.to;
 
+            if (req.query.dr) {
+                var dr = req.query.dr;
+                console.log(req.query.dr);
+                cita.find({doctor: dr, horainicio: {"$gte": from, "$lt": to}}).exec(function (err, citas) {
+                    //cita.find({doctor : dr}).populate("paciente").exec(function (err, citas) {
+                    //cita.find({}).exec( function (err, citas) {
+                    if (err) {
+                        return res.send(500, err.message);
+                    }
+                    else if (citas == undefined) {
+                        res.send(500, "No Citas on the DB");
+                    }
 
-        if (req.query.dr) {
-            var dr = req.query.dr;
-            console.log(req.query.dr);
-            cita.find({doctor : dr}).exec(function (err, citas) {
-            //cita.find({doctor : dr}).populate("paciente").exec(function (err, citas) {
+                    var result = [];
+
+                    for (var i = 0; i < citas.length; i++) {
+                        var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
+                        var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
+                        // console.log(horai);
+                        horai = horai.toISOString(); //citas[i].horainicio.toISOString();
+                        //console.log(String(horai));
+                        horai = String(horai).split("T");
+                        var horaii = horai[1].split(":");
+                        horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
+                        horaf = horaf.toISOString();
+                        horaf = String(horaf).split("T");
+                        var horaff = horaf[1].split(":");
+                        horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
+                        result.push({
+                            "id": citas[i]._id,
+                            "start_date": horai,
+                            "end_date": horaf,
+                            "paciente": citas[i].paciente._id,
+                            "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
+                            "doctor": citas[i].doctor,
+                            "tipo_visita": citas[i].tipovisita,
+                            "notas": citas[i].comentarios,
+
+                        })
+                    }
+
+                    res.status(200).json(result);
+                })
+            } else {
+                //Original function definition modified due the need of getting the patient data
                 //cita.find({}).exec( function (err, citas) {
-                if (err) {
-                    return res.send(500, err.message);
-                }
-                else if (citas == undefined) {
-                    res.send(500, "No Citas on the DB");
-                }
+                //Definition of the function v.1 modified for use with populate to get more data about patients.
+                //cita.find({}).populate("paciente").exec(function (err, citas) {
+                //Definition V.2 using denormalization we create a object for patient which will contain the patient data avoiding the need of populate.
+                cita.find({horainicio: {"$gte": from, "$lt": to}}).exec(function (err, citas) {
+                    if (err) {
+                        return res.send(500, err.message);
+                    }
+                    else if (citas == undefined) {
+                        res.send(500, "No Citas on the DB");
+                    }
 
-                var result = [];
+                    var result = [];
 
-                for (var i = 0; i < citas.length; i++) {
-                    var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
-                    var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
-                    // console.log(horai);
-                    horai = horai.toISOString(); //citas[i].horainicio.toISOString();
-                    //console.log(String(horai));
-                    horai = String(horai).split("T");
-                    var horaii = horai[1].split(":");
-                    horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
-                    horaf = horaf.toISOString();
-                    horaf = String(horaf).split("T");
-                    var horaff = horaf[1].split(":");
-                    horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
-                    result.push({
-                        "id": citas[i]._id,
-                        "start_date": horai,
-                        "end_date": horaf,
-                        "paciente": citas[i].paciente._id,
-                        "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
-                        "doctor": citas[i].doctor,
-                        "tipo_visita": citas[i].tipovisita,
-                        "notas": citas[i].comentarios,
+                    for (var i = 0; i < citas.length; i++) {
+                        var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
+                        var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
+                        // console.log(horai);
+                        horai = horai.toISOString(); //citas[i].horainicio.toISOString();
+                        //console.log(String(horai));
+                        horai = String(horai).split("T");
+                        var horaii = horai[1].split(":");
+                        horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
+                        horaf = horaf.toISOString();
+                        horaf = String(horaf).split("T");
+                        var horaff = horaf[1].split(":");
+                        horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
+                        //console.log(citas[i]);
+                        result.push({
+                            "id": citas[i]._id,
+                            "start_date": horai,
+                            "end_date": horaf,
+                            "paciente": citas[i].paciente._id,
+                            "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
+                            "doctor": citas[i].doctor,
+                            "tipo_visita": citas[i].tipovisita,
+                            "notas": citas[i].comentarios,
 
-                    })
-                }
+                        })
+                    }
 
-                res.status(200).json(result);
-            })
-        }else {
-            //Original function definition modified due the need of getting the patient data
-            //cita.find({}).exec( function (err, citas) {
-            //Definition of the function v.1 modified for use with populate to get more data about patients.
-            //cita.find({}).populate("paciente").exec(function (err, citas) {
-            //Definition V.2 using denormalization we create a object for patient which will contain the patient data avoiding the need of populate.
-            cita.find({}).exec(function (err, citas) {
-                if (err) {
-                    return res.send(500, err.message);
-                }
-                else if (citas == undefined) {
-                    res.send(500, "No Citas on the DB");
-                }
-
-                var result = [];
-
-                for (var i = 0; i < citas.length; i++) {
-                    var horai = new Date(citas[i].horainicio.getTime() - (citas[i].offset * 60000));
-                    var horaf = new Date(citas[i].horafinal.getTime() - (citas[i].offset * 60000));
-                    // console.log(horai);
-                    horai = horai.toISOString(); //citas[i].horainicio.toISOString();
-                    //console.log(String(horai));
-                    horai = String(horai).split("T");
-                    var horaii = horai[1].split(":");
-                    horai = horai [0] + " " + horaii [0] + ":" + horaii [1];
-                    horaf = horaf.toISOString();
-                    horaf = String(horaf).split("T");
-                    var horaff = horaf[1].split(":");
-                    horaf = horaf [0] + " " + horaff [0] + ":" + horaff [1];
-                    //console.log(citas[i]);
-                    result.push({
-                        "id": citas[i]._id,
-                        "start_date": horai,
-                        "end_date": horaf,
-                        "paciente": citas[i].paciente._id,
-                        "text": citas[i].paciente.nombre + " " + citas[i].paciente.apellido,
-                        "doctor": citas[i].doctor,
-                        "tipo_visita": citas[i].tipovisita,
-                        "notas": citas[i].comentarios,
-
-                    })
-                }
-
-                res.status(200).json(result);
-            })
-        }
+                    res.status(200).json(result);
+                })
+            }
 
     });
 
